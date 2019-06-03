@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Basics</title>
+  </head>
+  <body>
+    <div id="app">
+      <form v-on:submit.prevent="submit" action="" method="post">
+        <h1>VueBasics: example1</h1>
+        <h2>¿Cuales son tus cursos favoritos?</h2>
+        <template v-for="curso in cursos">
+          <curso v-bind:curso='curso' v-on:checked="selectCurso"></curso>
+        </template>
+        <button type="submit" name="button">botton</button>
+      </form>
+    </div>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+      Vue.component('curso', {
+        props: ['curso'],
+        methods:{
+          onChange: function (ev) {
+            this.$emit('checked', this.curso.value, ev.target.checked)
+          }
+        },
+        template: `
+        <div>
+          <input v-bind:id="curso.value" type="checkbox" v-bind:value="curso.value" @change='onChange'>
+          <label v-bind:for="curso.value">{{curso.nombre}}</label>
+        </div>
+        `
+      })
+
+      let app = new Vue ({
+        el: '#app',
+        data: {
+          cursos: [
+            {
+              nombre: 'Curso de Vue.js',
+              value: 'vue'
+            },
+            {
+              nombre: 'Curso de SEO',
+              value: 'seo'
+            },
+            {
+              nombre: 'Curso de React',
+              value: 'react'
+            }
+          ],
+          cursosSeleccionados: []
+        },
+        methods: {
+          submit: function () {
+            console.log('Se ejecuta')
+            console.log(this.cursosSeleccionados)
+          },
+          selectCurso: function (curso, checked) {
+            if (checked){
+              this.cursosSeleccionados.push(curso)
+            } else {
+              let index = this.cursosSeleccionados.indexOf(curso)
+              this.cursosSeleccionados.splice(index, 1)
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
