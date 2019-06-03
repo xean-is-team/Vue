@@ -2,17 +2,19 @@
 
 > A Vue.js project
 
+Este es un ejemplo básico de VueJs consumiendo una API.
+
 ## Build Setup
 
 ``` bash
-# install dependencies
+# instalar dependencias
 npm install
 
-# serve with hot reload at localhost:8080
+# desplegando el servidor local en localhost:8080
 npm run dev
 
-# build for production with minification
+# pasar a producción construyendo su minificación
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+**Vue msg:** For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
